@@ -1,4 +1,4 @@
-package com.ejercicios;
+package src.com.ejercicios;
 
 import java.util.Arrays;
 import java.util.HashMap;
