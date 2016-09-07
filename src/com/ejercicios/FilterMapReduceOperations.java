@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 // Dada una lista de Strings y una lista de Integers,
 // filtrar la lista de Strings de modo que queden solo los que tienen longitud N tal que N está 
@@ -91,12 +92,43 @@ public class FilterMapReduceOperations {
 		List<List<Integer>> devolver = new ArrayList();
 		words.forEach(word -> {
 
-			List<Integer> letritas = word.chars().mapToObj(e -> (char) e).collect(Collectors.toList());
+			List<Integer> letritas = word.stream().map(e -> getCharValue(e)).collect(Collectors.toList());
 			devolver.add(letritas);
 		});
 
 		return devolver;
 
+	}
+	
+	private static List<Integer> sumaNumeros(List<List<Integer>> numbers) {
+
+		List<Integer> devolver = new ArrayList();
+		numbers.forEach(number -> {
+
+			Integer suma = number.stream().reduce(0, (a,b) -> a+b);
+			devolver.add(suma);
+		});
+
+		return devolver;
+	}
+	
+	private static List<Integer> restarNumeroLista(List<Integer> numbers, Integer aRestar) {
+
+		List<Integer> devolver = new ArrayList();
+		numbers.forEach(number -> {
+
+			number = number-aRestar;
+			devolver.add(number);
+		});
+
+		return devolver;
+	}
+	
+	private static Integer numsMultiplicados(List<Integer> numbers) {
+
+		Integer producto = numbers.stream().reduce(1, (a,b) -> a*b);
+
+		return producto;
 	}
 
 	private static Integer execute(List<String> words, List<Integer> numbers) {
@@ -104,8 +136,12 @@ public class FilterMapReduceOperations {
 		List<String> longitudesFiltradas = wordsLongN(words, numbers);
 		List<String> grandotas = toUpper(longitudesFiltradas);
 		List<List<Character>> palabrasSeparadas = letrasEnListas(grandotas);
+		List<List<Integer>> valoresLetras = numDeLetras(palabrasSeparadas);
+		List<Integer> listasSumadas = sumaNumeros(valoresLetras);
+		List<Integer> sumadosMasChicos = restarNumeroLista(listasSumadas, 400);
+		Integer resultado = numsMultiplicados(sumadosMasChicos);
 
-		return 2;
+		return resultado;
 	}
 
 	private static Integer getCharValue(Character chr) {
