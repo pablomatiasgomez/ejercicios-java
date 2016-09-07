@@ -47,7 +47,7 @@ public class FilterMapReduceOperations {
 		List<String> devolver = new ArrayList();
 
 		words.forEach(word -> {
-			long longi = word.length();
+			Integer longi = word.length();
 			boolean existe = numbers.contains(longi);
 			if (existe) {
 				devolver.add(word);
