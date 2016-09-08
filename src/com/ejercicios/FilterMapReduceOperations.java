@@ -143,7 +143,23 @@ public class FilterMapReduceOperations {
 
 		return resultado;
 	}
-
+	
+    private static Integer executeStream(List<String> words, List<Integer> numbers) {
+        return words.stream().filter(word -> {
+            // TODO filtrar por longitud..
+        }).map(word -> {
+            // TODO to upper case..
+        }).map(word -> {
+            // TODO, aca devolver una lista de chars.. y asi tendriamos una stream de listas..
+        })
+         // un par de operaciones mas.. (map a lista de numeros, aca adentro hay que usar stream devuelva para cada listita
+        // adentro mismo hacer el primer reduce
+        // restar 400.. etc
+        // desp reudce de la lista de "afuera"
+       // y que esto directamente devuelva el Integer, de manera que el return quede en la primer linea como lo puse
+       
+    }
+    
 	private static Integer getCharValue(Character chr) {
 		return (int) chr.charValue();
 	}
